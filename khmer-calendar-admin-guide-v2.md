@@ -384,7 +384,7 @@ const ANIMALS = [
   { en: "Year of the Rabbit",  km: "ឆ្នាំថោះ" },     // index 7
   { en: "Year of the Dragon",  km: "ឆ្នាំរោង" },     // index 8
   { en: "Year of the Snake",   km: "ឆ្នាំម្សាញ់" },   // index 9
-  { en: "Year of the Horse",   km: "ឆ្នាំみみី" },     // index 10
+  { en: "Year of the Horse",   km: "ឆ្នាំមមី" },     // index 10
   { en: "Year of the Goat",    km: "ឆ្នាំមមែ" },     // index 11
 ];
 
