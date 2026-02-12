@@ -1,15 +1,15 @@
-import { toast } from "sonner";
-import { CheckCircle2, XCircle, Info, Loader2 } from "lucide-react";
+"use client";
 
-type ToastVariant = "default" | "destructive" | "success" | "info";
+import { toast } from "sonner";
+import { CheckCircle2, Loader2, XCircle } from "lucide-react";
+
+type ToastVariant = "default" | "destructive" | "success" | "info" | "warning";
 
 interface AppToastOptions {
   variant?: ToastVariant;
   title: string;
   description?: string;
   duration?: number;
-  actionLabel?: string;
-  onAction?: () => void;
 }
 
 export function useToast() {
@@ -18,80 +18,59 @@ export function useToast() {
     title,
     description,
     duration = 4000,
-    actionLabel,
-    onAction,
   }: AppToastOptions) => {
-    const baseOptions = {
-      description,
-      duration,
-      action:
-        actionLabel && onAction
-          ? {
-              label: actionLabel,
-              onClick: onAction,
-            }
-          : undefined,
-    };
-
+    
     switch (variant) {
       case "destructive":
-        toast.error(title, {
-          ...baseOptions,
-          icon: <XCircle className="text-red-500 w-5 h-5" />,
-        });
-        break;
+        return toast.custom((t) => (
+          <div className="flex items-center gap-4 bg-[#FFD5D5] p-5 rounded-[22px] shadow-lg min-w-87.5 animate-in fade-in slide-in-from-top-4 duration-300">
+            <div className="shrink-0 bg-white rounded-full shadow-sm">
+              <XCircle className="w-12 h-12 text-[#E54D4D] fill-[#E54D4D] stroke-white stroke-[2px]" />
+            </div>
+            
+            <div className="flex flex-col gap-0.5">
+              <h3 className="text-[17px] font-semibold text-slate-900 leading-tight">
+                {title}
+              </h3>
+              {description && (
+                <p className="text-[15px] text-slate-600 font-medium">
+                  {description}
+                </p>
+              )}
+            </div>
+          </div>
+        ), { duration });
 
       case "success":
-        toast.success(title, {
-          ...baseOptions,
-          icon: <CheckCircle2 className="text-green-500 w-5 h-5" />,
-        });
-        break;
-
-      case "info":
-        toast(title, {
-          ...baseOptions,
-          icon: <Info className="text-blue-500 w-5 h-5" />,
-        });
-        break;
+        return toast.custom((t) => (
+          <div className="flex items-center gap-4 bg-[#DCFCE7] p-5 rounded-[22px] shadow-lg min-w-87.5">
+            <div className="shrink-0 bg-white rounded-full shadow-sm">
+              <CheckCircle2 className="w-12 h-12 text-[#10B981] fill-[#10B981] stroke-white stroke-[2px]" />
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <h3 className="text-[17px] font-semibold text-slate-900 leading-tight">{title}</h3>
+              {description && <p className="text-[15px] text-slate-600 font-medium">{description}</p>}
+            </div>
+          </div>
+        ), { duration });
 
       default:
-        toast(title, baseOptions);
+        return toast(title, { description, duration });
     }
   };
 
   const loading = (title: string, description?: string) =>
     toast.loading(title, {
       description,
-      icon: <Loader2 className="animate-spin w-5 h-5" />,
+      className: "rounded-[22px] p-5 shadow-lg min-w-[350px] bg-white border-none",
+      icon: <Loader2 className="animate-spin w-6 h-6 text-blue-500" />,
     });
-
-  const dismiss = (id?: string | number) => toast.dismiss(id);
-
-  const promise = <T,>(
-    promise: Promise<T>,
-    messages: {
-      loading: string;
-      success: string;
-      error: string;
-    }
-  ) => {
-    return toast.promise(promise, {
-      loading: messages.loading,
-      success: messages.success,
-      error: messages.error,
-    });
-  };
 
   const apiError = (err: any) => {
-    const message =
-      err?.response?.data?.message ||
-      err?.message ||
-      "Something went wrong";
-
+    const message = err?.response?.data?.message || err?.message || "Something went wrong";
     showToast({
       variant: "destructive",
-      title: "Request Failed",
+      title: "Error",
       description: message,
     });
   };
@@ -99,8 +78,7 @@ export function useToast() {
   return {
     toast: showToast,
     loading,
-    promise,
-    dismiss,
     apiError,
+    dismiss: (id?: string | number) => toast.dismiss(id),
   };
 }
