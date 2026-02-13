@@ -7,10 +7,6 @@ interface KhmerYearInfo {
 
 // 12-year animal zodiac cycle aligned to Gregorian year
 const ANIMALS = [
-  { en: "Year of the Monkey",  km: "ឆ្នាំវក" },
-  { en: "Year of the Rooster", km: "ឆ្នាំរកា" },
-  { en: "Year of the Dog",     km: "ឆ្នាំច" },
-  { en: "Year of the Pig",     km: "ឆ្នាំកុរ" },
   { en: "Year of the Rat",     km: "ឆ្នាំជូត" },
   { en: "Year of the Ox",      km: "ឆ្នាំឆ្លូវ" },
   { en: "Year of the Tiger",   km: "ឆ្នាំខាល" },
@@ -19,6 +15,10 @@ const ANIMALS = [
   { en: "Year of the Snake",   km: "ឆ្នាំម្សាញ់" },
   { en: "Year of the Horse",   km: "ឆ្នាំមមី" },
   { en: "Year of the Goat",    km: "ឆ្នាំមមែ" },
+  { en: "Year of the Monkey",  km: "ឆ្នាំវក" },
+  { en: "Year of the Rooster", km: "ឆ្នាំរកា" },
+  { en: "Year of the Dog",     km: "ឆ្នាំច" },
+  { en: "Year of the Pig",     km: "ឆ្នាំកុរ" },
 ];
 
 /**

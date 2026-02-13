@@ -47,14 +47,14 @@ const LoginPage = () => {
         if (result?.error) {
             toast({ 
                 title: "សូមអធ្យាស្រ័យ", 
-                description: "ប្រព័ន្ទមិនស្គាល់ព័តមានរបស់អ្នកទេ។ សូមមេត្តាព្យាយាមម្ដងទៀត សូមអរគុណ​ 🙏", 
+                description: "មិនមានព័តមានរបស់អ្នកនៅក្នុងប្រព័ន្ធទេ! សូមព្យាយាមម្ដងទៀត។", 
                 variant: "destructive" 
             });
             setLoading(false);
         } else {
             toast({ 
-                title: "អបអរសារទរ 👏", 
-                description: "អ្នកបានចូលក្នុងប្រព័ន្ទប្រតិទិនកូនខ្មែរបានដោយជោគជ័យ", 
+                title: "អបអរសារទរ", 
+                description: "អ្នកបានចូលក្នុងប្រព័ន្ទ ប្រតិទិនកូនខ្មែរ បានដោយជោគជ័យ", 
                 variant: "success" 
             });
             router.push("/");

@@ -94,11 +94,11 @@ export function NavUser({ user }: NavUserProps) {
         
         <DropdownMenuGroup>
           <DropdownMenuItem className="cursor-pointer rounded-md py-2 px-3 focus:bg-blue-50 focus:text-blue-600">
-            <UserCircle className="mr-2 size-4" /> 
+            <UserCircle className="mr-2 size-4 focus:bg-blue-50 focus:text-blue-600" /> 
             <span>គណនី</span>
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer rounded-md py-2 px-3 focus:bg-blue-50 focus:text-blue-600">
-            <CreditCard className="mr-2 size-4" /> 
+            <CreditCard className="mr-2 size-4 focus:bg-blue-50 focus:text-blue-600" /> 
             <span>ការទូទាត់</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -108,15 +108,15 @@ export function NavUser({ user }: NavUserProps) {
         <DropdownMenuItem 
           className="cursor-pointer rounded-md py-2 px-3 text-red-600 focus:bg-red-50 focus:text-red-700 font-medium" 
           onSelect={(e) => {
-            e.preventDefault() // Prevent menu from closing immediately
+            e.preventDefault()
             handleSignOut()
           }}
           disabled={isLoggingOut}
         >
           {isLoggingOut ? (
-            <Loader2 className="mr-2 size-4 animate-spin" />
+            <Loader2 className="mr-2 size-4 animate-spin text-red-600 focus:bg-red-50 focus:text-red-700" />
           ) : (
-            <LogOutIcon className="mr-2 size-4" />
+            <LogOutIcon className="mr-2 size-4 text-red-600 focus:bg-red-50 focus:text-red-700" />
           )}
           <span>ចាកចេញ</span>
         </DropdownMenuItem>
